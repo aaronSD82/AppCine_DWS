@@ -11,14 +11,14 @@
     <div class="bas"><div class="Slogan"><div class="NomSitio"></div></div></div>
     <div class="base">
         <div class="cabecera"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-        <div class="subcabecera"><p class="fechor"><span class="hora">16h 45m</span><span class="fecha">Miercoles, día 12 de Octubre</span></p></div>
+        <div class="subcabecera"><p class="fechor"><span class="hora" th:text="${hora}">16h 45m</span><span class="fecha" th:text="${fecha}">Miercoles, día 12 de Octubre</span></p></div>
         <div class="cuerpo">
            <div class="spot1">
-              <div><p>Miércoles, Día del espectador.</p>
-                <p><span>desde 3,5 €</span></p>
+              <div><p th:text="${mensajeBienvenida}">Miércoles, Día del espectador.</p>
+                <p><span th:utext="${precio} + '&euro;'">desde 3,5 €</span></p>
               </div>
            </div><!--
-           --><div class="spot2"><a href="http://localhost:8080/TicketingSystem/step1">Reserva tu entrada</a></div>
+           --><div class="spot2"><a th:href="@{/step1}">Reserva tu entrada</a></div>
         </div>
         <div class="pie"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
