@@ -2,10 +2,13 @@ package es.dsw.services;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import es.dsw.models.Pelicula;
@@ -33,8 +36,15 @@ public class ServicePelicula {
 	
 	private void loadFilesImages(){
 		
-		File archivosDeImagen = new File("src/main/resources/static/img/films/billboard");
-		arrImage = archivosDeImagen.list();
+		Resource recursoImg = new ClassPathResource("static/img/films/billboard");
+		File archivosDeImagen;
+		try {
+			archivosDeImagen = recursoImg.getFile();
+			arrImage = archivosDeImagen.list();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void generateListOfPeliculas(){
