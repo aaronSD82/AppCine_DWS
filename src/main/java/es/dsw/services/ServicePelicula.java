@@ -18,9 +18,15 @@ public class ServicePelicula {
 	private Set<Pelicula> listaPeliculas;
 	private DateService serviceDate;
 	
+	
 	public ServicePelicula(DateService serviceDate) {
 		super();
 		this.serviceDate = serviceDate;
+		
+	}
+	
+	public void startService() {
+		
 		loadFilesImages();
 		generateListOfPeliculas();
 	}
@@ -36,6 +42,7 @@ public class ServicePelicula {
 		listaPeliculas = new HashSet<>();
 		int day = serviceDate.getDiaHoy();
 		Random imgRandom = new Random();
+		imgRandom.setSeed(System.currentTimeMillis());
 		
 		if(day == 1 || day == 2 || day == 4){
 			
@@ -57,11 +64,11 @@ public class ServicePelicula {
 		
 	}
 	
-	public void imprime() {
-		
-		listaPeliculas.stream().forEach(pel -> System.out.println(pel.getNombreImagenString()));
-		
+
+	public Set<Pelicula> getListaPeliculas() {
+		return listaPeliculas;
 	}
+
 	
 
 }

@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+
 import es.dsw.services.DateService;
 import es.dsw.services.ServicePelicula;
 
@@ -34,8 +36,12 @@ public class MainController {
 	
 	@GetMapping(value = {"/step1"})
 	public String mappingStep1(Model myModel) {
-		                                  				
-		myPeliculaService.imprime();
+		
+		String precio = myDateService.getDiaHoy() == 4 ? "3.5" : "6";
+		
+		myPeliculaService.startService(); 
+		myModel.addAttribute("peliculas", myPeliculaService);
+		myModel.addAttribute("precio", precio);
 		return "views/step1";
 	}
 	
