@@ -1,5 +1,6 @@
 package es.dsw.models;
 
+import java.util.Objects;
 
 public class Pelicula {
 	
@@ -15,6 +16,45 @@ public class Pelicula {
 		this.pais = pais;
 		this.nombreImagenString = nombreImagen;
 	}
+
+	public Pelicula(String nombreImagenString) {
+		super();
+		this.nombreImagenString = nombreImagenString;
+	}
+
+	public String getProductora() {
+		return productora;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public String getNombreImagenString() {
+		return nombreImagenString;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombreImagenString);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pelicula other = (Pelicula) obj;
+		return Objects.equals(nombreImagenString, other.nombreImagenString);
+	}
+	
 	
 	
 }

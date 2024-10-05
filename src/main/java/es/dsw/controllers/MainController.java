@@ -6,12 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import es.dsw.services.DateService;
+import es.dsw.services.ServicePelicula;
 
 @Controller
 public class MainController {
 	
 	@Autowired
-	DateService myDateService;
+	private DateService myDateService;
+	
+	@Autowired
+	private ServicePelicula myPeliculaService;
 	
 	@GetMapping(value = {"/", "/index"})
 	public String mappingIndex(Model myModel) {
@@ -30,8 +34,8 @@ public class MainController {
 	
 	@GetMapping(value = {"/step1"})
 	public String mappingStep1(Model myModel) {
-		                                  //TODO Aqui podemos crear una clase que contenga un array de las imagenes y las seleccione aleatoriamente.
-										  //TODO para hacer con un th:each las cargas de las imagenes en el step1
+		                                  				
+		myPeliculaService.imprime();
 		return "views/step1";
 	}
 	
