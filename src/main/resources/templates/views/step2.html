@@ -20,14 +20,16 @@
                 <div><label>Nombre:</label><input type="text" th:field="*{nombre}" th:style="${#fields.hasErrors('nombre')} ? 'border-color:red;'" /></div>
                 <div><label>Apellidos:</label><input type="text" th:field="*{apellido}" /></div>
                 <div><label>e-mail:</label><input type="email" th:field="*{email}" th:style="${#fields.hasErrors('email')} ? 'border-color:red;'" /></div>
-                <div><label>Repetir e-mail:</label><input type="email" name="frepmail" /></div>
+                <div><label>Repetir e-mail:</label><input type="email" th:field="*{repEmailString}" /></div>
               </div>
 			  <span class="errores" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Errores</span>
 			  <span class="errores" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Errores</span>
-			  <span class="errores" th:if="${#fields.hasErrors('badEmail')}" th:errors="*{badEmail}">Errores</span>
+			  <span class="errores" th:if="${#fields.hasErrors('repEmailString')}" th:errors="*{repEmailString}">Errores</span>
+			  <span class="errores" th:if="${#fields.hasErrors('dateString')}" th:errors="*{dateString}">Errores</span>
+			  <span class="errores" th:if="${#fields.hasErrors('hourString')}" th:errors="*{hourString}">Errores</span>
               <div class="DatRes">
-                <div><label>Fecha:</label><input type="date" name="fdate" min="2022-09-10" max="2022-12-01" /></div>
-                <div><label>Hora:</label><input type="time" name="fhour" list="popularHours" value="17:00" min="17:00" max="23:00" step="1800" />
+                <div><label>Fecha:</label><input type="date" th:field="*{dateString}" min="2022-09-10" max="2022-12-01" th:style="${#fields.hasErrors('dateString')} ? 'border-color:red;'" /></div>
+                <div><label>Hora:</label><input type="time" th:field="*{hourString}" list="popularHours" value="17:00" min="17:00" max="23:00" step="1800" th:style="${#fields.hasErrors('hourString')} ? 'border-color:red;'"/>
                     <datalist id="popularHours">
                         <option value="17:00">
                         <option value="20:00">

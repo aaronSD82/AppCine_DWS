@@ -90,8 +90,6 @@ public class MainController {
 	@PostMapping(value = {"/step3"})
 	public String mappingStep3(@Valid @ModelAttribute("cliente") Costumer costumer,
 								BindingResult bindingResult,
-								@RequestParam String frepmail,
-								@RequestParam String fdate,
 								Model model){
 		
 		if(bindingResult.hasErrors()) {
@@ -99,12 +97,16 @@ public class MainController {
 			return "views/step2";
 		}
 		
-		if(costumer.getEmail().equals(frepmail)) {
+		if(!costumer.getRepEmailString().equalsIgnoreCase(costumer.getEmail())) {
 			
-			bindingResult.rejectValue("badEmail", "error.badEMail", "El email introducido no coincide");
+			bindingResult.rejectValue("repEmailString", "repEmailString.error", "El email no coincide");
+			
+			return "views/step2";
 		}
+		 
 		
 		return "views/step3";
+		
 	}
 	
 	@GetMapping(value = {"/step4"})

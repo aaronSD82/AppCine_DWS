@@ -15,6 +15,14 @@ public class Costumer {
 	@Email(message = "introduza un email válido")
 	private String email;
 	
+	@NotEmpty(message = "Rellene la fecha")
+	private String dateString;
+	
+	@NotEmpty(message = "Escoja una hora")
+	private String hourString;
+	
+	private String repEmailString;
+	
 	private Pelicula peliculaChosen;
 	
 	
@@ -25,6 +33,32 @@ public class Costumer {
 		this.email = email;
 		
 	}
+	
+	
+
+	public String getDateString() {
+		return dateString;
+	}
+
+
+
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
+
+
+
+	public String getHourString() {
+		return hourString;
+	}
+
+
+
+	public void setHourString(String hourString) {
+		this.hourString = hourString;
+	}
+
+
 
 	public String getNombre() {
 		return nombre;
@@ -48,6 +82,15 @@ public class Costumer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+
+	public String getRepEmailString() {
+		return repEmailString;
+	}
+
+	public void setRepEmailString(String repEmailString) {
+		this.repEmailString = repEmailString;
 	}
 
 	public Pelicula getPeliculaChosen() {
