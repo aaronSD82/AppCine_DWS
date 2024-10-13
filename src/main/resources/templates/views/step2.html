@@ -14,17 +14,20 @@
         <div class="subcabecera"><div class="CuentaAtrasTres"></div><p>&nbsp;Introduzca los datos</p></div>
         <div class="cuerpo" style="background-image: url('/TicketingSystem/img/means/fondo21-3.gif');">
            
-            <form class="Fdatares" name="Fdatareserva" method="POST" action="http://localhost:8080/TicketingSystem/step3">
-              <div class="mini-billboard-selected"><div><div style="background-image: url('/TicketingSystem/img/films/billboard/film3.jpg')"></div></div></div>
+            <form class="Fdatares" name="Fdatareserva" method="POST" th:action="@{/step3}" th:object="${cliente}">
+              <div class="mini-billboard-selected"><div><div  th:style="'background-image: url(' + @{img/films/billboard/{img}(img=${cliente.peliculaChosen.nombreImagenString})} + ');'"></div></div></div>
               <div class="DatPer">
-                <div><label>Nombre:</label><input type="text" name="fnom" /></div>
-                <div><label>Apellidos:</label><input type="text" name="fapell" /></div>
-                <div><label>e-mail:</label><input type="email" name="fmail" /></div>
+                <div><label>Nombre:</label><input type="text" th:field="*{nombre}" th:style="${#fields.hasErrors('nombre')} ? 'border-color:red;'" /></div>
+                <div><label>Apellidos:</label><input type="text" th:field="*{apellido}" /></div>
+                <div><label>e-mail:</label><input type="email" th:field="*{email}" th:style="${#fields.hasErrors('email')} ? 'border-color:red;'" /></div>
                 <div><label>Repetir e-mail:</label><input type="email" name="frepmail" /></div>
               </div>
+			  <span class="errores" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Errores</span>
+			  <span class="errores" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Errores</span>
+			  <span class="errores" th:if="${#fields.hasErrors('badEmail')}" th:errors="*{badEmail}">Errores</span>
               <div class="DatRes">
                 <div><label>Fecha:</label><input type="date" name="fdate" min="2022-09-10" max="2022-12-01" /></div>
-                <div><label>Hora:</label><input type="time" name="fhour" list="popularHours" value="17:00" min="17:00" max="23:00" step="10800" />
+                <div><label>Hora:</label><input type="time" name="fhour" list="popularHours" value="17:00" min="17:00" max="23:00" step="1800" />
                     <datalist id="popularHours">
                         <option value="17:00">
                         <option value="20:00">
@@ -35,7 +38,7 @@
                     <div class="VerticalAling"><label class="numentradas">Nº menores 12 años:</label><input type="number" name="fnumentradasmen" min="0" max="60" value="0" step="1"/></div>  
               </div>
               <div>
-                <div><a class="atrasbtn" href="http://localhost:8080/TicketingSystem/step1">&lt;&lt; Atras</a><a class="homebtn" href="http://localhost:8080/TicketingSystem/index">&nbsp;</a><input type="submit" value="Siguiente &gt;&gt;" /></div>
+                <div><a class="atrasbtn" th:href="@{/step1}">&lt;&lt; Atras</a><a class="homebtn" th:href="@{/index}">&nbsp;</a><input type="submit" value="Siguiente &gt;&gt;"/></div>
               </div>
             </form>
         </div>

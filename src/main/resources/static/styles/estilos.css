@@ -13,6 +13,7 @@ body {
   background-size: cover;
 }
 
+
 .bas {
   width: 92%;
   background-color: rgb(179, 177, 177);
@@ -404,6 +405,17 @@ form.Fdatares div label {
 
 form.Fdatares div.DatPer label {
   width: 105px;
+}
+
+span.errores{
+	
+	text-align: center;
+	color: red;
+	font-size: 1.3rem;
+	height: 20px;
+	line-height: 20px;
+	display: block;
+	margin-top: 5px;
 }
 
 form.Fdatares div.DatRes label {

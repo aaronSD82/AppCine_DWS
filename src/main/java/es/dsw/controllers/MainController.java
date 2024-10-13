@@ -4,13 +4,22 @@ package es.dsw.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
-
+import es.dsw.models.Costumer;
+import es.dsw.models.Pelicula;
 import es.dsw.services.DateService;
 import es.dsw.services.ServicePelicula;
+import jakarta.validation.Valid;
 
 @Controller
+@SessionAttributes({"cliente"})
 public class MainController {
 	
 	@Autowired
@@ -20,8 +29,9 @@ public class MainController {
 	private ServicePelicula myPeliculaService;
 	
 	@GetMapping(value = {"/", "/index"})
-	public String mappingIndex(Model myModel) {
+	public String mappingIndex(Model myModel, SessionStatus status) {
 		
+		if(myModel.getAttribute("cliente") != null) {status.setComplete();}
 		myDateService.startAndRefresh();
 		
 		String precio = myDateService.getDiaHoy() == 4 ? "Desde 3.5 " : "Desde 6 ";
@@ -46,13 +56,53 @@ public class MainController {
 	}
 	
 	@GetMapping(value = {"/step2"})
-	public String mappingStep2() {
+	public String mappingStep2(@RequestParam(defaultValue = "0") int sala,
+			                   Model myModel) {
 		
-		return "views/step2";
+		Pelicula chosenMovie;
+		
+		if(sala < 1) {
+			return "redirect:/step1"; 
+		}
+		
+		else if(myModel.getAttribute("cliente") == null && sala > 0) {
+			
+			Costumer cliCostumer = new Costumer("", "", "");
+			chosenMovie = myPeliculaService.getListaPeliculas().get(sala - 1);
+			chosenMovie.setSala(sala);
+			cliCostumer.setPeliculaChosen(chosenMovie);
+			myModel.addAttribute("cliente", cliCostumer);
+		
+		}
+		
+		else {
+			Costumer changePelicula = (Costumer) myModel.getAttribute("cliente");
+			chosenMovie = myPeliculaService.getListaPeliculas().get(sala - 1);
+			chosenMovie.setSala(sala);
+			changePelicula.setPeliculaChosen(chosenMovie);
+			
+		}
+		
+		return "views/step2"; 
 	}
 	
-	@GetMapping(value = {"/step3"})
-	public String mappingStep3() {
+
+	@PostMapping(value = {"/step3"})
+	public String mappingStep3(@Valid @ModelAttribute("cliente") Costumer costumer,
+								BindingResult bindingResult,
+								@RequestParam String frepmail,
+								@RequestParam String fdate,
+								Model model){
+		
+		if(bindingResult.hasErrors()) {
+			
+			return "views/step2";
+		}
+		
+		if(costumer.getEmail().equals(frepmail)) {
+			
+			bindingResult.rejectValue("badEmail", "error.badEMail", "El email introducido no coincide");
+		}
 		
 		return "views/step3";
 	}

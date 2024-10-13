@@ -3,10 +3,9 @@ package es.dsw.services;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,7 @@ public class ServicePelicula {
 	
 	
 	private String[] arrImage;
-	private Set<Pelicula> listaPeliculas;
+	private List<Pelicula> listaPeliculas;
 	private DateService serviceDate;
 	
 	
@@ -42,41 +41,38 @@ public class ServicePelicula {
 			archivosDeImagen = recursoImg.getFile();
 			arrImage = archivosDeImagen.list();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 	
 	private void generateListOfPeliculas(){
 		
-		listaPeliculas = new HashSet<>();
+		listaPeliculas = new ArrayList<>();
 		int day = serviceDate.getDiaHoy();
-		Random imgRandom = new Random();
-		imgRandom.setSeed(System.currentTimeMillis());
+		for(String img:arrImage) {
+			
+			listaPeliculas.add(new Pelicula(img));
+			
+		}
+		
+		Collections.shuffle(listaPeliculas);
 		
 		if(day == 1 || day == 2 || day == 4){
 			
-			while(listaPeliculas.size() < 4) {
-				 
-				listaPeliculas.add(new Pelicula(arrImage[imgRandom.nextInt(0, 13)]));
-				
-			}
+			listaPeliculas = listaPeliculas.subList(0, 4);
 			
 		} 
 		else { 
 			
-			while(listaPeliculas.size() < 7) {
-				
-				listaPeliculas.add(new Pelicula(arrImage[imgRandom.nextInt(0, 13)]));
-			}
-			
+			listaPeliculas = listaPeliculas.subList(0, 7);
 		}
 		
 	}
 	
 
-	public Set<Pelicula> getListaPeliculas() {
-		return listaPeliculas;
+	public List<Pelicula> getListaPeliculas() {
+		return listaPeliculas; 
 	}
 
 	

@@ -20,7 +20,7 @@ public class DateService {
 	
 	public void startAndRefresh() {
 		
-		hDate = new Date();
+		hDate = new Date(); 
 		fechaHoy = formatoES.format(hDate);
 		diaHoy = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
 		hora = formatoHora.format(hDate);

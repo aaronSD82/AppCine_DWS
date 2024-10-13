@@ -14,7 +14,7 @@
         <div class="subcabecera"><div class="CuentaAtrasCatro"></div><p>&nbsp;Seleccione una película</p></div>
         <div class="cuerpo">
             <div th:each="peli, iterStat : ${peliculas.listaPeliculas}">
-                <a id="Idfilm1" class="pelicula" th:href="@{/step2}" th:style="'background-image: url(' + @{img/films/billboard/{img}(img = ${peli.nombreImagenString})} + ');'"></a>
+                <a id="Idfilm1" class="pelicula" th:href="@{/step2?imagen={img}&sala={sal}(img=${peli.nombreImagenString}, sal=${iterStat.count})}" th:style="'background-image: url(' + @{img/films/billboard/{img}(img = ${peli.nombreImagenString})} + ');'"></a>
                 <div class="info"><p th:utext="'<span>SALA' + ${iterStat.count} + '</span> - ' + ${precio} + '&euro;'"></p></div>
             </div>
         </div>

@@ -2,13 +2,16 @@ package es.dsw.models;
 
 import java.util.Objects;
 
+
 public class Pelicula {
 	
 	private String productora;
 	private String genero;
 	private String pais;
 	private String nombreImagenString;
+	private int sala;
 	
+
 	public Pelicula(String productora, String genero, String pais, String nombreImagen) {
 		super();
 		this.productora = productora;
@@ -36,6 +39,14 @@ public class Pelicula {
 
 	public String getNombreImagenString() {
 		return nombreImagenString;
+	}
+	
+	public int getSala() {
+		return sala;
+	}
+
+	public void setSala(int sala) {
+		this.sala = sala;
 	}
 
 	@Override
