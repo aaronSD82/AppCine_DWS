@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+
 import es.dsw.models.Costumer;
 import es.dsw.models.Pelicula;
 import es.dsw.services.DateService;
@@ -67,7 +68,9 @@ public class MainController {
 		
 		else if(myModel.getAttribute("cliente") == null && sala > 0) {
 			
-			Costumer cliCostumer = new Costumer("", "", "");
+			Costumer cliCostumer = new Costumer();
+			cliCostumer.setNumNinios(0);
+			cliCostumer.setNumAdultos(1);
 			chosenMovie = myPeliculaService.getListaPeliculas().get(sala - 1);
 			chosenMovie.setSala(sala);
 			cliCostumer.setPeliculaChosen(chosenMovie);

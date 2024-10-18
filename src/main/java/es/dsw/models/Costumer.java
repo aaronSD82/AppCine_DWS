@@ -1,7 +1,9 @@
 package es.dsw.models;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+
 
 
 public class Costumer {
@@ -25,16 +27,43 @@ public class Costumer {
 	
 	private Pelicula peliculaChosen;
 	
+	@Min(value = 1, message = "Debe seleccionar al menos un adulto")
+	private int numAdultos;
 	
-	public Costumer(String nombre, String apellido, String email) {
+	@Min(value = 0)
+	private int numNinios;
+	
+	
+	public Costumer() {
 		super();
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
 		
 	}
 	
 	
+
+	public int getNumAdultos() {
+		return numAdultos;
+	}
+
+
+
+	public void setNumAdultos(int numAdultos) {
+		this.numAdultos = numAdultos;
+	}
+
+
+
+	public int getNumNinios() {
+		return numNinios;
+	}
+
+
+
+	public void setNumNinios(int numNinios) {
+		this.numNinios = numNinios;
+	}
+
+
 
 	public String getDateString() {
 		return dateString;
