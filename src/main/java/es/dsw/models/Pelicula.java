@@ -3,38 +3,25 @@ package es.dsw.models;
 import java.util.Objects;
 
 
+
 public class Pelicula {
 	
-	private String productora;
-	private String genero;
-	private String pais;
+	private String titulo;
 	private String nombreImagenString;
 	private int sala;
-	
+	private int id;
+	private double precio;
 
-	public Pelicula(String productora, String genero, String pais, String nombreImagen) {
+	public Pelicula(String titulo, String nombreImagen, int sala, double precio) {
 		super();
-		this.productora = productora;
-		this.genero = genero;
-		this.pais = pais;
+		this.titulo = titulo;
 		this.nombreImagenString = nombreImagen;
+		this.sala = sala;
+		this.precio = precio;
 	}
-
-	public Pelicula(String nombreImagenString) {
+	
+	public Pelicula() {
 		super();
-		this.nombreImagenString = nombreImagenString;
-	}
-
-	public String getProductora() {
-		return productora;
-	}
-
-	public String getGenero() {
-		return genero;
-	}
-
-	public String getPais() {
-		return pais;
 	}
 
 	public String getNombreImagenString() {
@@ -47,6 +34,34 @@ public class Pelicula {
 
 	public void setSala(int sala) {
 		this.sala = sala;
+	}
+	
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public void setNombreImagenString(String nombreImagenString) {
+		this.nombreImagenString = nombreImagenString;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

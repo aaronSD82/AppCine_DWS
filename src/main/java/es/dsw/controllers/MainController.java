@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-
 import es.dsw.models.Costumer;
 import es.dsw.models.Pelicula;
 import es.dsw.services.DateService;
-import es.dsw.services.ServicePelicula;
+import es.dsw.services.ServicePeliculaDAO;
 import jakarta.validation.Valid;
 
 @Controller
@@ -27,7 +26,7 @@ public class MainController {
 	private DateService myDateService;
 	
 	@Autowired
-	private ServicePelicula myPeliculaService;
+	private ServicePeliculaDAO myPeliculaService;
 	
 	@GetMapping(value = {"/", "/index"})
 	public String mappingIndex(Model myModel, SessionStatus status) {
@@ -48,11 +47,9 @@ public class MainController {
 	@GetMapping(value = {"/step1"})
 	public String mappingStep1(Model myModel) {
 		
-		String precio = myDateService.getDiaHoy() == 4 ? "3.5" : "6";
-		
 		myPeliculaService.startService(); 
 		myModel.addAttribute("peliculas", myPeliculaService);
-		myModel.addAttribute("precio", precio);
+		
 		return "views/step1";
 	}
 	
@@ -83,7 +80,7 @@ public class MainController {
 			chosenMovie = myPeliculaService.getListaPeliculas().get(sala - 1);
 			chosenMovie.setSala(sala);
 			changePelicula.setPeliculaChosen(chosenMovie);
-			
+			System.out.println();
 		}
 		
 		return "views/step2"; 
@@ -120,6 +117,7 @@ public class MainController {
 	
 	@GetMapping(value = {"/end"})
 	public String mappingEnd() {
+		
 		
 		return "views/end";
 	}
