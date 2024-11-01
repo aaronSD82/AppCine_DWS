@@ -209,21 +209,21 @@ public class MySqlConnection {
 					PreparedStatement objStament = this.connection.prepareStatement(_sql,Statement.RETURN_GENERATED_KEYS);	
 					objStament.execute();
 					ResultSet rs = objStament.getGeneratedKeys();
-					return rs;
+					return rs; 
 				}
 				else {
 					this.flagError = true;
-					this.msgError = "Error en ExecuteQuery. +Info: Conexión cerrada.";
+					this.msgError = "Error en ExecuteInsert. +Info: Conexión cerrada.";
 				}
 			 }
 			 else {
 				this.flagError = true;
-				this.msgError = "Error en ExecuteQuery. +Info: Conexión no inicializada.";
+				this.msgError = "Error en ExecuteInsert. +Info: Conexión no inicializada.";
 			}
 		   }
 		   catch (SQLException ex) {
 			    this.flagError = true;
-			    this.msgError = "Error en ExecuteQuery. +Info: " + ex.getMessage();
+			    this.msgError = "Error en ExecuteInsert. +Info: " + ex.getMessage();
 		   }
 		
 		   try {
@@ -232,7 +232,7 @@ public class MySqlConnection {
 				}
 			} catch (SQLException ex) {
 				this.flagError = true;
-				this.msgError = "Error en intento de rollback en ExecuteQuery. +Info: " + ex.getMessage();
+				this.msgError = "Error en intento de rollback en ExecuteInsert. +Info: " + ex.getMessage();
 			}
 		
 		return null; 
@@ -316,5 +316,6 @@ public class MySqlConnection {
 	public String msgError() {
 		return this.msgError;
 	}
+	
 
 }

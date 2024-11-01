@@ -25,7 +25,7 @@ public class ServicePeliculaDAO {
 	public ServicePeliculaDAO(DateService serviceDate) {
 		super();
 		this.serviceDate = serviceDate;
-		connection = new MySqlConnection();
+		connection = new MySqlConnection(false);
 
 	}
 
@@ -62,7 +62,7 @@ public class ServicePeliculaDAO {
 							+ "INNER JOIN ROOMCINEMA_FILM ON SESSION_FILM.IDROOMCINEMA_SSF = ROOMCINEMA_FILM.IDROOMCINEMA_RCF\n"
 							+ "INNER JOIN REPOSITORY_FILM ON SESSION_FILM.IDFILM_SSF = REPOSITORY_FILM.IDFILM_RF\n"
 							+ "ORDER BY SESSION_FILM.IDROOMCINEMA_SSF ASC");
-
+			
 			while (rs.next()) {
 
 				Pelicula pelicula = new Pelicula();

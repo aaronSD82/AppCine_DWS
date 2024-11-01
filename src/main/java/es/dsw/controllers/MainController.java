@@ -109,8 +109,16 @@ public class MainController {
 		
 	}
 	
-	@GetMapping(value = {"/step4"})
-	public String mappingStep4() {
+	@PostMapping(value = {"/step4"})
+	public String mappingStep4(@ModelAttribute("cliente") Costumer costumer, 
+								@RequestParam(name="FButacasSelected") String butacas, Model model) {
+		
+		Double precioTotalNinios = costumer.getNumNinios() * 3.5;
+		Double precioTotalAdultos = costumer.getNumAdultos() * costumer.getPeliculaChosen().getPrecio();
+		String butacasToShowInView = butacas.replace(';', ',');
+		model.addAttribute("precioTotalNinios", precioTotalNinios);
+		model.addAttribute("precioTotalAdultos", precioTotalAdultos);
+		model.addAttribute("butacas", butacasToShowInView);
 		
 		return "views/step4";
 	}
