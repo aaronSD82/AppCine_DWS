@@ -209,8 +209,8 @@
                                 </div> 
                     </div>
                 </div><!--
-             --><form class="ButacasFm" name="FDataButacas" method="post" th:action="@{/step4}">
-                     <input id="txtButacas" type="hidden" name="FButacasSelected" value="" /> 
+             --><form class="ButacasFm" th:object="${cliente}" name="FDataButacas" method="post" th:action="@{/step4}">
+                     <input id="txtButacas" type="hidden" th:field="*{butacas}" value="" /> 
                      <a class="atrasbtn" th:href="@{/step2?sala={sal}(sal=${cliente.peliculaChosen.sala})}">&lt;&lt; Atras</a><a class="homebtn" th:href="@{/index}">&nbsp;</a><input id="SubmitButacas" type="submit" value="Siguiente &gt;&gt;" />
                 </form>
         </div>

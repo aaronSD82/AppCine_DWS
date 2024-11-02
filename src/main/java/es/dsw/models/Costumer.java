@@ -1,5 +1,6 @@
 package es.dsw.models;
 
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -32,6 +33,18 @@ public class Costumer {
 	
 	@Min(value = 0)
 	private int numNinios;
+	
+	private String numTarjeta;
+	
+	private String anioCaducaTarjeta;
+	
+	private String mesCaducaTarjeta;
+	
+	private String titularTarjeta;
+	
+	private String cvvTarjeta;
+	
+	private String butacas;
 	
 	
 	public Costumer() {
@@ -72,6 +85,7 @@ public class Costumer {
 
 
 	public void setDateString(String dateString) {
+		
 		this.dateString = dateString;
 	}
 
@@ -128,6 +142,78 @@ public class Costumer {
 
 	public void setPeliculaChosen(Pelicula peliculaChosen) {
 		this.peliculaChosen = peliculaChosen;
+	}
+
+
+
+	public String getNumTarjeta() {
+		return numTarjeta;
+	}
+
+
+
+	public void setNumTarjeta(String numTarjeta) {
+		this.numTarjeta = numTarjeta;
+	}
+
+
+
+	public String getAnioCaducaTarjeta() {
+		return anioCaducaTarjeta;
+	}
+
+
+
+	public void setAnioCaducaTarjeta(String anioCaducaTarjeta) {
+		this.anioCaducaTarjeta = anioCaducaTarjeta;
+	}
+
+
+
+	public String getMesCaducaTarjeta() {
+		return mesCaducaTarjeta;
+	}
+
+
+
+	public void setMesCaducaTarjeta(String mesCaducaTarjeta) {
+		this.mesCaducaTarjeta = mesCaducaTarjeta;
+	}
+
+
+
+	public String getTitularTarjeta() {
+		return titularTarjeta;
+	}
+
+
+
+	public void setTitularTarjeta(String titularTarjeta) {
+		this.titularTarjeta = titularTarjeta;
+	}
+
+
+
+	public String getCvvTarjeta() {
+		return cvvTarjeta;
+	}
+
+
+
+	public void setCvvTarjeta(String cvvTarjeta) {
+		this.cvvTarjeta = cvvTarjeta;
+	}
+
+
+
+	public String getButacas() {
+		return butacas;
+	}
+
+
+
+	public void setButacas(String butacas) {
+		this.butacas = butacas;
 	}
 
 	

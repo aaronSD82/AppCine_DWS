@@ -1,6 +1,9 @@
 package es.dsw.controllers;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,6 +106,8 @@ public class MainController {
 			
 			return "views/step2";
 		}
+		
+		model.addAttribute("cliente", costumer);
 		 
 		
 		return "views/step3";
@@ -111,21 +116,24 @@ public class MainController {
 	
 	@PostMapping(value = {"/step4"})
 	public String mappingStep4(@ModelAttribute("cliente") Costumer costumer, 
-								@RequestParam(name="FButacasSelected") String butacas, Model model) {
+							   Model model) {
 		
 		Double precioTotalNinios = costumer.getNumNinios() * 3.5;
 		Double precioTotalAdultos = costumer.getNumAdultos() * costumer.getPeliculaChosen().getPrecio();
-		String butacasToShowInView = butacas.replace(';', ',');
-		model.addAttribute("precioTotalNinios", precioTotalNinios);
-		model.addAttribute("precioTotalAdultos", precioTotalAdultos);
+		String butacasToShowInView = costumer.getButacas().replace(';', ',');
+		DateTimeFormatter formatoOriginal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fecha = LocalDate.parse(costumer.getDateString(), formatoOriginal);
+        costumer.setDateString(fecha.format(formatoDeseado));
+		model.addAttribute("precioTotal", precioTotalNinios + precioTotalAdultos);
 		model.addAttribute("butacas", butacasToShowInView);
+		model.addAttribute("cliente", costumer);
 		
 		return "views/step4";
 	}
 	
-	@GetMapping(value = {"/end"})
-	public String mappingEnd() {
-		
+	@PostMapping(value = {"/end"})
+	public String mappingEnd(@ModelAttribute("cliente") Costumer costumer, Model myModel) {
 		
 		return "views/end";
 	}
