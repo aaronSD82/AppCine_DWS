@@ -25,13 +25,13 @@
               <div class="CuerResumen">
                     <p th:utext="'<span>Película:</span>' + ${cliente.peliculaChosen.titulo}"></p>
                     <p th:utext="'<span>Sala:</span>' + ${cliente.peliculaChosen.sala} "></p>
-                    <p th:utext="'<span>Fecha:</span>' + ${cliente.dateString}"></p>
+                    <p th:utext="'<span>Fecha:</span>' + ${fecha}"></p>
                     <p th:utext="'<span>Sesión:</span>' + ${cliente.hourString}"></p>
                     <p th:utext="'<span>Adultos:</span>'+ ${cliente.numAdultos} + ' x ' + ${cliente.peliculaChosen.precio} + '€'"></p>
                     <p th:utext="'<span>&lt; 12 años:</span>' + ${cliente.numNinios} + ' x 3.5€'"></p>
                     <p th:utext="'<span>Butacas:</span>' + ${butacas}"></p>
               </div>
-              <div class="CabResumenFac"><p th:utext="'<span>TOTAL: ' + ${precioTotal} + '€</span>'"></p></div>
+              <div class="CabResumenFac"><p th:utext="'<span>TOTAL: ' + ${cliente.precioTotalVentaEntradas} + '€</span>'"></p></div>
               <div class="CabResumenTar"><p>Confirmación de compra</p></div>
               <div class="DatTarjeta">
                 <div><label>Titular:</label><input type="text" th:field="*{titularTarjeta}" value="" required/></div>

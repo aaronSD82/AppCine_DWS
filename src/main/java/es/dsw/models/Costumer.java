@@ -46,6 +46,8 @@ public class Costumer {
 	
 	private String butacas;
 	
+	private double precioTotalVentaEntradas;
+	
 	
 	public Costumer() {
 		super();
@@ -216,6 +218,18 @@ public class Costumer {
 		this.butacas = butacas;
 	}
 
-	
+
+
+	public double getPrecioTotalVentaEntradas() {
+		return precioTotalVentaEntradas;
+	}
+
+
+
+	public void setPrecioTotalVentaEntradas() {
+		this.precioTotalVentaEntradas = (numNinios * 3.5) + (numAdultos * peliculaChosen.getPrecio());
+	}
+
+
 	
 }

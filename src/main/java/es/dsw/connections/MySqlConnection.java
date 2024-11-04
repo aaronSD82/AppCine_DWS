@@ -316,6 +316,10 @@ public class MySqlConnection {
 	public String msgError() {
 		return this.msgError;
 	}
-	
 
+	public Connection getConnection() {
+		return connection;
+	}
+	
+	
 }

@@ -11,6 +11,7 @@ public class Pelicula {
 	private int sala;
 	private int id;
 	private double precio;
+	private int sesion;
 
 	public Pelicula(String titulo, String nombreImagen, int sala, double precio) {
 		super();
@@ -62,6 +63,15 @@ public class Pelicula {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+
+	public int getSesion() {
+		return sesion;
+	}
+
+	public void setSesion(int sesion) {
+		this.sesion = sesion;
 	}
 
 	@Override

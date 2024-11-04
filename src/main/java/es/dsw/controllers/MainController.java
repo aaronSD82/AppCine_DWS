@@ -17,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import es.dsw.models.Costumer;
 import es.dsw.models.Pelicula;
+import es.dsw.services.CostumerDAO;
 import es.dsw.services.DateService;
 import es.dsw.services.ServicePeliculaDAO;
 import jakarta.validation.Valid;
@@ -30,6 +31,9 @@ public class MainController {
 	
 	@Autowired
 	private ServicePeliculaDAO myPeliculaService;
+	
+	@Autowired
+	private CostumerDAO costumerDAO;
 	
 	@GetMapping(value = {"/", "/index"})
 	public String mappingIndex(Model myModel, SessionStatus status) {
@@ -118,14 +122,13 @@ public class MainController {
 	public String mappingStep4(@ModelAttribute("cliente") Costumer costumer, 
 							   Model model) {
 		
-		Double precioTotalNinios = costumer.getNumNinios() * 3.5;
-		Double precioTotalAdultos = costumer.getNumAdultos() * costumer.getPeliculaChosen().getPrecio();
+		costumer.setPrecioTotalVentaEntradas();
 		String butacasToShowInView = costumer.getButacas().replace(';', ',');
 		DateTimeFormatter formatoOriginal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fecha = LocalDate.parse(costumer.getDateString(), formatoOriginal);
-        costumer.setDateString(fecha.format(formatoDeseado));
-		model.addAttribute("precioTotal", precioTotalNinios + precioTotalAdultos);
+        model.addAttribute("fecha", fecha.format(formatoDeseado));
+		//model.addAttribute("precioTotal", precioTotalNinios + precioTotalAdultos);
 		model.addAttribute("butacas", butacasToShowInView);
 		model.addAttribute("cliente", costumer);
 		
@@ -134,6 +137,10 @@ public class MainController {
 	
 	@PostMapping(value = {"/end"})
 	public String mappingEnd(@ModelAttribute("cliente") Costumer costumer, Model myModel) {
+		
+		costumerDAO.setCostumer(costumer);
+		costumerDAO.insertBuyingTicket();
+		System.out.println(costumerDAO.mensajeErrorTransaccion());
 		
 		return "views/end";
 	}

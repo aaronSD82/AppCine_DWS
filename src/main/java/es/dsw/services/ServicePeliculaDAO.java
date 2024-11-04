@@ -58,7 +58,7 @@ public class ServicePeliculaDAO {
 
 			connection.open();
 			ResultSet rs = connection.executeSelect(
-					"SELECT NUMBERROOM_RCF AS 'SALA', TITLE_RF AS 'TITULO', IDFILM_RF AS 'ID' FROM SESSION_FILM\n"
+					"SELECT NUMBERROOM_RCF AS 'SALA', TITLE_RF AS 'TITULO', IDFILM_RF AS 'ID', IDSESSION_SSF AS 'SESION' FROM SESSION_FILM\n"
 							+ "INNER JOIN ROOMCINEMA_FILM ON SESSION_FILM.IDROOMCINEMA_SSF = ROOMCINEMA_FILM.IDROOMCINEMA_RCF\n"
 							+ "INNER JOIN REPOSITORY_FILM ON SESSION_FILM.IDFILM_SSF = REPOSITORY_FILM.IDFILM_RF\n"
 							+ "WHERE S_ACTIVEROW_SSF = 1 AND\n"
@@ -72,6 +72,7 @@ public class ServicePeliculaDAO {
 				pelicula.setId(rs.getInt("ID")); 
 				pelicula.setSala(rs.getInt("SALA"));
 				pelicula.setTitulo(rs.getString("TITULO"));
+				pelicula.setSesion(rs.getInt("SESION"));
 				int indexImage = listImages.indexOf("film" + pelicula.getId() + ".jpg");
 				pelicula.setNombreImagenString(listImages.get(indexImage));
 				pelicula.setPrecio(precio);
