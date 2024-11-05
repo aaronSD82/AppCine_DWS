@@ -17,8 +17,8 @@
                 <p>La compra ha sido realizada con éxito. En breve se enviará un correo electrónico a danielperezperez@ieselrincon.es</p>
                 <p>Si desea imprimir las entradas haga click <a href="./imrpimirTicket.html" target="_blank">aquí</a>. También puede capturar los códigos QR que se muestran a continuación.</p>
             </div>
-            <div class="EntregaEntradas" th:each="QR, iterStat : ${cliente.codesQR}">
-                <div class="Entrada">
+            <div class="EntregaEntradas">
+                <div class="Entrada" th:each="QR, iterStat : ${cliente.codesQR}">
                     <div class="EntradaCab">
                       <img th:src="@{/img/means/entrada.gif}" alt="ticket" />
                       <p class="EntrCodeTitle">Código</p>
@@ -34,15 +34,15 @@
                     <img th:src="@{/img/means/entrada-cue.gif}" alt="ticket" />
                     <p class="EntrPeliculaTitle">Película: <span th:text="${cliente.peliculaChosen.titulo}">LightYear</span></p>
                     <p class="EntrSalaTitle">Sala: <span th:text="${cliente.peliculaChosen.sala}">2</span></p>
-                    <p class="EntrFechaVal" th:text="'Fecha: ' + ${cliente.dateString}">15/10/2022</p>
-                    <p class="EntrHoraVal" th:text="'Hora: ' + ${cliente.hourString}">+20:00h</p>
+                    <p class="EntrFechaVal" th:text="${cliente.dateString}">15/10/2022</p>
+                    <p class="EntrHoraVal" th:text="${cliente.hourString}">+20:00h</p>
                     <p class="EntrButacaVal1" th:text="'Fila: ' + ${cliente.arrFilasToShowInEnd[iterStat.count - 1]}">Fila: 5</p>
                     <p class="EntrButacaVal2" th:text="'Butaca: ' + ${cliente.arrButacasToShowInEnd[iterStat.count - 1]}">Butaca: 2</p>
                     <img class="ImagenQR" th:src="'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=' + ${QR}" alt="QR"/>
                     
                     </div>
                 </div>
-                
+              
             </div>
             <div class="EntregaEntradas">
                 <form>
