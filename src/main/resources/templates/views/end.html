@@ -26,7 +26,7 @@
                       <p class="EntrPeliculaTitle">Película</p>
                       <p class="EntrPeliculaVal" th:text="${cliente.peliculaChosen.titulo}">LightYear</p>
                       <p class="EntrSala" th:utext="'<span>Sala:</span>' + ${cliente.peliculaChosen.sala}"></p>
-                      <p class="EntrFechaVal" th:text="'Fecha: ' + ${cliente.dateString}"> 15/10/2022</p>
+                      <p class="EntrFechaVal" th:text="'Fecha: ' + ${fecha}"> 15/10/2022</p>
                       <p class="EntrHoraVal" th:text="'Hora: ' + ${cliente.hourString}">+20:00h</p>
                       <p class="EntrButacaVal" th:text="'Fila: ' + ${cliente.arrFilasToShowInEnd[iterStat.count - 1]} + ',Butaca: ' + ${cliente.arrButacasToShowInEnd[iterStat.count - 1]}"></p>
                     </div><!--
@@ -34,8 +34,8 @@
                     <img th:src="@{/img/means/entrada-cue.gif}" alt="ticket" />
                     <p class="EntrPeliculaTitle">Película: <span th:text="${cliente.peliculaChosen.titulo}">LightYear</span></p>
                     <p class="EntrSalaTitle">Sala: <span th:text="${cliente.peliculaChosen.sala}">2</span></p>
-                    <p class="EntrFechaVal" th:text="${cliente.dateString}">15/10/2022</p>
-                    <p class="EntrHoraVal" th:text="${cliente.hourString}">+20:00h</p>
+                    <p class="EntrFechaVal" th:text="${fecha}">15/10/2022</p>
+                    <p class="EntrHoraVal" th:text="${cliente.hourString} + 'h'">+20:00h</p>
                     <p class="EntrButacaVal1" th:text="'Fila: ' + ${cliente.arrFilasToShowInEnd[iterStat.count - 1]}">Fila: 5</p>
                     <p class="EntrButacaVal2" th:text="'Butaca: ' + ${cliente.arrButacasToShowInEnd[iterStat.count - 1]}">Butaca: 2</p>
                     <img class="ImagenQR" th:src="'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=' + ${QR}" alt="QR"/>

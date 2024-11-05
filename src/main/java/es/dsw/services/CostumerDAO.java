@@ -1,10 +1,10 @@
 package es.dsw.services;
 
+import java.security.SecureRandom;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
@@ -87,7 +87,7 @@ public class CostumerDAO {
 		String codeQR;
 		String[] rowSeats = costumer.getButacas().split(";");
 		int actualSeat = 0;
-		Random random = new Random();
+		SecureRandom random = new SecureRandom();
 
 		try {
 			conn.open();
@@ -96,9 +96,8 @@ public class CostumerDAO {
 				if (!conn.getConnection().isClosed() || buyTicketId != -1) {
 
 					for (int i = 0; i < costumer.getNumNinios(); i++) {
-
-						long rdm = random.nextLong(0, 9999999999999999l);
-						random.setSeed(System.currentTimeMillis());
+						
+						long rdm = random.nextLong(0, 10_000_000_000_000_000L);
 						codeQR = String.format("%16d", rdm);
 
 						PreparedStatement objStament = conn.getConnection().prepareStatement(sqlForInsertTickets);
@@ -120,10 +119,9 @@ public class CostumerDAO {
 					}
 
 					for (int i = 0; i < costumer.getNumAdultos(); i++) {
-
-						long rdm = random.nextLong(0, 9999999999999999l);
-						random.setSeed(System.currentTimeMillis());
-						codeQR = String.format("%16d", rdm);
+						
+						long rdm = random.nextLong(0, 10_000_000_000_000_000L);
+						codeQR = String.format("%016d", rdm);
 
 						PreparedStatement objStament = conn.getConnection().prepareStatement(sqlForInsertTickets);
 						objStament.setInt(1, costumer.getPeliculaChosen().getSesion());
@@ -146,6 +144,7 @@ public class CostumerDAO {
 
 				} else {
 					this.msgError = conn.msgError();
+					System.out.println("Ha ocurrido el error " + this.msgError + " o no se registró la compra");
 				}
 			} else {
 				this.msgError = conn.msgError();

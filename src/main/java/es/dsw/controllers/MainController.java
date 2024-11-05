@@ -23,7 +23,7 @@ import es.dsw.services.ServicePeliculaDAO;
 import jakarta.validation.Valid;
 
 @Controller
-@SessionAttributes({"cliente"})
+@SessionAttributes({"cliente", "fecha"})
 public class MainController {
 	
 	@Autowired
@@ -125,7 +125,7 @@ public class MainController {
 		costumer.setPrecioTotalVentaEntradas();
 		String butacasToShowInView = costumer.getButacas().replace(';', ',');
 		DateTimeFormatter formatoOriginal = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fecha = LocalDate.parse(costumer.getDateString(), formatoOriginal);
         model.addAttribute("fecha", fecha.format(formatoDeseado));
 		model.addAttribute("butacas", butacasToShowInView);
