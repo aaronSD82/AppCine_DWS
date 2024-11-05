@@ -135,12 +135,13 @@ public class MainController {
 	}
 	
 	@PostMapping(value = {"/end"})
-	public String mappingEnd(@ModelAttribute("cliente") Costumer costumer, Model myModel) {
+	public String mappingEnd(@ModelAttribute("cliente") Costumer costumer) {
 		
 		costumerDAO.setCostumer(costumer);
+		costumer.convertStringsOfButacas();
 		costumerDAO.insertBuyingTicket();
 		costumerDAO.insertTicketsInBD();
-		System.out.println(costumerDAO.mensajeErrorTransaccion());
+
 		
 		return "views/end";
 	}

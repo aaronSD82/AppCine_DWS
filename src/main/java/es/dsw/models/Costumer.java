@@ -1,6 +1,9 @@
 package es.dsw.models;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -46,11 +49,18 @@ public class Costumer {
 	
 	private String butacas;
 	
+	private String[] arrButacasToShowInEnd;
+	
+	private String[] arrFilasToShowInEnd;
+	
+	private List<String> codesQR;
+	
 	private double precioTotalVentaEntradas;
 	
 	
 	public Costumer() {
 		super();
+		codesQR = new ArrayList<>();
 		
 	}
 	
@@ -229,7 +239,42 @@ public class Costumer {
 	public void setPrecioTotalVentaEntradas() {
 		this.precioTotalVentaEntradas = (numNinios * 3.5) + (numAdultos * peliculaChosen.getPrecio());
 	}
+	
+	
+
+	public String[] getArrButacasToShowInEnd() {
+		return arrButacasToShowInEnd;
+	}
 
 
+
+	public String[] getArrFilasToShowInEnd() {
+		return arrFilasToShowInEnd;
+	}
+
+	
+
+	public List<String> getCodesQR() {
+		return codesQR;
+	}
+
+
+
+	public void convertStringsOfButacas() {
+		
+		String[] arrButacas = butacas.split(";");
+		arrButacasToShowInEnd = new String[arrButacas.length];
+		arrFilasToShowInEnd = new String[arrButacas.length];
+		for(int i = 0; i < arrButacas.length; i++) {
+			
+			int indexOfCharF = arrButacas[i].indexOf("F");
+			int indexOfCharB = arrButacas[i].indexOf("B");
+			
+			arrFilasToShowInEnd[i] = arrButacas[i].substring(indexOfCharF + 1, indexOfCharB);
+			arrButacasToShowInEnd[i] = arrButacas[i].substring(indexOfCharB + 1);
+			
+			
+		}
+	}
 	
 }

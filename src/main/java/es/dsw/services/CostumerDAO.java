@@ -112,6 +112,7 @@ public class CostumerDAO {
 						objStament.setInt(8, buyTicketId);
 						
 						actualSeat = i + 1;
+						costumer.getCodesQR().add(codeQR);
 
 						objStament.execute();
 
@@ -135,6 +136,7 @@ public class CostumerDAO {
 						objStament.setInt(8, buyTicketId);
 
 						actualSeat++;
+						costumer.getCodesQR().add(codeQR);
 
 						objStament.execute();
 
@@ -144,7 +146,6 @@ public class CostumerDAO {
 
 				} else {
 					this.msgError = conn.msgError();
-					System.out.println("He entrado en el else antes de los bucles for");
 				}
 			} else {
 				this.msgError = conn.msgError();
