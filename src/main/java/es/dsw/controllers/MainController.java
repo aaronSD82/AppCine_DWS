@@ -128,7 +128,6 @@ public class MainController {
         DateTimeFormatter formatoDeseado = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fecha = LocalDate.parse(costumer.getDateString(), formatoOriginal);
         model.addAttribute("fecha", fecha.format(formatoDeseado));
-		//model.addAttribute("precioTotal", precioTotalNinios + precioTotalAdultos);
 		model.addAttribute("butacas", butacasToShowInView);
 		model.addAttribute("cliente", costumer);
 		
@@ -140,6 +139,7 @@ public class MainController {
 		
 		costumerDAO.setCostumer(costumer);
 		costumerDAO.insertBuyingTicket();
+		costumerDAO.insertTicketsInBD();
 		System.out.println(costumerDAO.mensajeErrorTransaccion());
 		
 		return "views/end";

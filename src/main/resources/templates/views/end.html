@@ -23,7 +23,7 @@
             <div class="EntregaEntradas">
                 <div class="Entrada">
                     <div class="EntradaCab">
-                      <img src="/TicketingSystem/img/means/entrada.gif" alt="ticket" />
+                      <img th:src="@{/img/means/entrada.gif}" alt="ticket" />
                       <p class="EntrCodeTitle">Código</p>
                       <p class="EntrCodeVal">1000006372127372</p>
                       <p class="EntrPeliculaTitle">Película</p>
@@ -34,7 +34,7 @@
                       <p class="EntrButacaVal">Fila: 5, Butaca: 2</p>
                     </div><!--
                  --><div class="EntradaCuer">
-                    <img src="/TicketingSystem/img/means/entrada-cue.gif" alt="ticket" />
+                    <img th:src="@{/img/means/entrada-cue.gif}" alt="ticket" />
                     <p class="EntrPeliculaTitle">Película: <span>LightYear</span></p>
                     <p class="EntrSalaTitle">Sala: <span>2</span></p>
                     <p class="EntrFechaVal">15/10/2022</p>
@@ -96,7 +96,7 @@
             </div>
             <div class="EntregaEntradas">
                 <form>
-                        <a class="homebtn" href="http://localhost:8080/TicketingSystem/index">&nbsp;</a>
+                        <a class="homebtn" th:href="@{/index}">&nbsp;</a>
                 </form>
             </div>
         </div>
