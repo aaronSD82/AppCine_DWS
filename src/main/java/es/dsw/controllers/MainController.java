@@ -149,8 +149,14 @@ public class MainController {
 		costumerDAO.setCostumer(costumer);
 		costumer.convertStringsOfButacas();
 		costumerDAO.insertBuyingTicketAndTicketsInBD();
-
-		return "views/end";
+		if(costumerDAO.isError()) {
+			model.addAttribute("msgError", costumerDAO.getMsgError());
+			return "views/failBuy";
+		}
+		else {
+			return "views/end";
+		}
+		
 	}
 
 }

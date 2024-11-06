@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compra Fallida</title>
+    <link rel="stylesheet" th:href="@{/styles/estilos.css}"/>
+  </head>
+  <body>
+    <main>
+      <h1 class="failBuy">
+        !!!Uups ha ocurrido un error al realizar la compra. Si quiere volver a
+        intentarlo pulse <a th:href="@{/index}">aquí</a>.
+      </h1>
+	  <br><br>
+	  <h3 th:text="${msgError}" style="color: beige; text-align: center;"></h3>
+    </main>
+  </body>
+</html>

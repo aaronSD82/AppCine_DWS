@@ -18,6 +18,7 @@ public class CostumerDAO {
 	private Costumer costumer;
 	private String msgError;
 	private ResultSet rs;
+	private boolean isError;
 
 	public CostumerDAO() {
 
@@ -42,12 +43,14 @@ public class CostumerDAO {
 				+ "SERIALCODE_TKF, YOUNGER_TKF, PRICE_TKF, ROWSEAT_TKF, \r\n" + "IDBUYTICKETS_TKF, S_ACTIVEROW_TKF,\r\n"
 				+ " S_IDUSER_TKF) \r\n" + "VALUES \r\n" + "(?, ?, ?, ?, ?, ?, ?, ?, b'1',\r\n"
 				+ "'1');";
+		
+		this.isError = false;
 
 		try {
 
 			conn.open();
 
-			if (conn != null) {
+			if (conn.getConnection() != null) {
 				if (!conn.getConnection().isClosed()) {
 					PreparedStatement objStament = conn.getConnection().prepareStatement(sqlForInsert,
 							Statement.RETURN_GENERATED_KEYS);
@@ -117,8 +120,8 @@ public class CostumerDAO {
 					conn.getConnection().commit();
 					
 					}else {
-						this.msgError = conn.msgError();
-						System.out.println("Ha ocurrido el error " + this.msgError + " o no se registró la compra");
+						this.msgError = "Ha ocurrido el error " + this.msgError + " o no se registró la compra";
+						this.isError = true;
 						try {
 							conn.getConnection().rollback();
 						} catch (SQLException e) {
@@ -128,14 +131,17 @@ public class CostumerDAO {
 					
 				} else {
 					this.msgError = conn.msgError();
+					this.isError = true;
 				}
 				
 			} else {
 				this.msgError = conn.msgError();
+				this.isError = true;
 			}
 			
 		} catch (SQLException ex) {
 			this.msgError = "No se ha realizado la operación por un error interno. Intentelo de nuevo";
+			this.isError = true;
 			try {
 				conn.getConnection().rollback();
 			} catch (SQLException e) {
@@ -147,8 +153,9 @@ public class CostumerDAO {
 
 	}
 
-	public String mensajeErrorTransaccion() {
+	
 
+	public String getMsgError() {
 		return msgError;
 	}
 
@@ -159,5 +166,15 @@ public class CostumerDAO {
 	public void setCostumer(Costumer costumer) {
 		this.costumer = costumer;
 	}
+
+	public boolean isError() {
+		return isError;
+	}
+
+	public void setError(boolean isError) {
+		this.isError = isError;
+	}
+	
+	
 
 }
