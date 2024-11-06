@@ -98,7 +98,7 @@ public class CostumerDAO {
 					for (int i = 0; i < costumer.getNumNinios(); i++) {
 						
 						long rdm = random.nextLong(0, 10_000_000_000_000_000L);
-						codeQR = String.format("%16d", rdm);
+						codeQR = String.format("%016d", rdm);
 
 						PreparedStatement objStament = conn.getConnection().prepareStatement(sqlForInsertTickets);
 						objStament.setInt(1, costumer.getPeliculaChosen().getSesion());

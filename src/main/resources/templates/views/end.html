@@ -14,7 +14,7 @@
         <div class="subcabecera"><p>¡¡ Compra realizada con éxtio !!</p></div>
         <div class="cuerpo">
             <div class="EntregaEntradas">
-                <p>La compra ha sido realizada con éxito. En breve se enviará un correo electrónico a danielperezperez@ieselrincon.es</p>
+                <p th:text="'La compra ha sido realizada con éxito. En breve se enviará un correo electrónico a ' + ${cliente.email}"></p>
                 <p>Si desea imprimir las entradas haga click <a href="./imrpimirTicket.html" target="_blank">aquí</a>. También puede capturar los códigos QR que se muestran a continuación.</p>
             </div>
             <div class="EntregaEntradas">

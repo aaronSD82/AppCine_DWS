@@ -3,6 +3,7 @@ package es.dsw.controllers;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import es.dsw.models.Pelicula;
 import es.dsw.services.CostumerDAO;
 import es.dsw.services.DateService;
 import es.dsw.services.ServicePeliculaDAO;
+import es.dsw.services.SessionDAO;
 import jakarta.validation.Valid;
 
 @Controller
@@ -34,6 +36,9 @@ public class MainController {
 	
 	@Autowired
 	private CostumerDAO costumerDAO;
+	
+	@Autowired
+	private SessionDAO sessionDAO;
 	
 	@GetMapping(value = {"/", "/index"})
 	public String mappingIndex(Model myModel, SessionStatus status) {
@@ -113,6 +118,10 @@ public class MainController {
 		
 		model.addAttribute("cliente", costumer);
 		 
+		sessionDAO.setCostumer(costumer);
+		List<String> butacasOcuppied = sessionDAO.listOfButacasOcuppied();
+		
+		model.addAttribute("ocuppied", butacasOcuppied);
 		
 		return "views/step3";
 		

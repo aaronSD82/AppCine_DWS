@@ -1,4 +1,12 @@
 $(function () {
+	
+	
+	butacasOcuppied.forEach(butaca => {
+		
+		$('#' + butaca).css("background-color", "rgb(255, 0, 0)");
+		
+	})
+	
   $(".butaca").click(function (e) {
     UpdateButaca(e.target.id);
   });
