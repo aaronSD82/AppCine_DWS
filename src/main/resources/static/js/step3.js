@@ -2,7 +2,7 @@ $(function () {
 	
 	
 	butacasOcuppied.forEach(butaca => {
-		
+		console.log(butaca);
 		$('#' + butaca).css("background-color", "rgb(255, 0, 0)");
 		
 	})

@@ -148,10 +148,8 @@ public class MainController {
 		
 		costumerDAO.setCostumer(costumer);
 		costumer.convertStringsOfButacas();
-		costumerDAO.insertBuyingTicket();
-		costumerDAO.insertTicketsInBD();
+		costumerDAO.insertBuyingTicketAndTicketsInBD();
 
-		
 		return "views/end";
 	}
 
