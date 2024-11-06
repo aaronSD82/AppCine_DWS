@@ -18,7 +18,6 @@ public class CostumerDAO {
 	private Costumer costumer;
 	private String msgError;
 	private ResultSet rs;
-	int buyTicketId = -1;
 
 	public CostumerDAO() {
 
@@ -30,6 +29,7 @@ public class CostumerDAO {
 		String codeQR;
 		String[] rowSeats = costumer.getButacas().split(";");
 		int actualSeat = 0;
+		int buyTicketId = -1;
 		SecureRandom random = new SecureRandom();
 
 		String sqlForInsert = " INSERT INTO DB_FILMCINEMA.BUYTICKETS_FILM" + "(NAME_BTF, SURNAMES_BTF, EMAIL_BTF,"
@@ -119,6 +119,11 @@ public class CostumerDAO {
 					}else {
 						this.msgError = conn.msgError();
 						System.out.println("Ha ocurrido el error " + this.msgError + " o no se registró la compra");
+						try {
+							conn.getConnection().rollback();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					}
 					
 				} else {

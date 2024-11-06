@@ -144,7 +144,7 @@ public class MainController {
 	}
 	
 	@PostMapping(value = {"/end"})
-	public String mappingEnd(@ModelAttribute("cliente") Costumer costumer) {
+	public String mappingEnd(@ModelAttribute("cliente") Costumer costumer, Model model) {
 		
 		costumerDAO.setCostumer(costumer);
 		costumer.convertStringsOfButacas();
