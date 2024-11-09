@@ -17,10 +17,10 @@ public class SessionDAO {
 	private MySqlConnection connection;
 	private List<String> butacasOcuppied;
 	
-	public SessionDAO() {
+	public SessionDAO(MySqlConnection connection) {
 		super();
 		butacasOcuppied = new ArrayList<>();
-		connection = new MySqlConnection();
+		this.connection=connection;
 	}
 	
 	public List<String> listOfButacasOcuppied(){

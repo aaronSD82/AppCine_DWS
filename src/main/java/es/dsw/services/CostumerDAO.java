@@ -19,10 +19,11 @@ public class CostumerDAO {
 	private String msgError;
 	private ResultSet rs;
 	private boolean isError;
+	
+	public CostumerDAO(MySqlConnection conn) {
 
-	public CostumerDAO() {
-
-		conn = new MySqlConnection(false);
+		this.conn=conn;
+		conn.setAutocomit(false);
 	}
 
 	public void insertBuyingTicketAndTicketsInBD() {

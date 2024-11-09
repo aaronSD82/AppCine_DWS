@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -21,11 +22,11 @@ public class ServicePeliculaDAO {
 	private List<String> listImages;
 	private DateService serviceDate;
 	MySqlConnection connection;
-
-	public ServicePeliculaDAO(DateService serviceDate) {
+	
+	public ServicePeliculaDAO(DateService serviceDate, MySqlConnection connection) {
 		super();
 		this.serviceDate = serviceDate;
-		connection = new MySqlConnection(false);
+		this.connection=connection;
 
 	}
 

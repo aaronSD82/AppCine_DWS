@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 //[2] - CONSTRUCCIÓN DE LA CLASE CONECTORA
 
 /*####################################################################################
@@ -20,21 +23,27 @@ import java.sql.Statement;
  * ###################################################################################
  */
 
+@Component
 public class MySqlConnection {
 	
 	//Aunque en este ejemplo los datos de conexión están en código, siempre es recomendable que esta
 	//parametrización figure en un fichero de propiedades.
 	
 	//Nombre del host
-	private String host = "localhost";
+	@Value("${cine.host}")
+	private String host;
 	//Puerto
-	private String puerto = "3306";
+	@Value("${cine.port}")
+	private String puerto;
 	//Nombre de la base de datos
-	private String nameDB = "db_filmcinema";
+	@Value("${cine.nameOfDataBase}")
+	private String nameDB;
 	//Usuario de conexión
-	private String usuario = "root";
+	@Value("${cine.user}")
+	private String usuario;
 	//Contraseña
-	private String password = "Iria2017&";
+	@Value("${cine.password}")
+	private String password;
 	
 	//Atributo que indica si las operaciones se realizarán con autocomit. De lo contrario, en la capa de datos (DAO's) se
 	//debe controlar las transacciones.
@@ -319,6 +328,14 @@ public class MySqlConnection {
 
 	public Connection getConnection() {
 		return connection;
+	}
+
+	public boolean isAutocomit() {
+		return autocomit;
+	}
+
+	public void setAutocomit(boolean autocomit) {
+		this.autocomit = autocomit;
 	}
 	
 	
