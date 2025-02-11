@@ -10,19 +10,6 @@ import java.sql.Statement;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-//[2] - CONSTRUCCIÓN DE LA CLASE CONECTORA
-
-/*####################################################################################
- * 
- * NOMBRE: MySqlConnection
- * FECHA: 24/06/2023
- * AUTOR: Daniel Pérez
- * 
- * DESCRIPCIÓN: Clase de la capa CONEXION que centraliza toda la complejidad de conexión, acceso y modificación de
- * datos para una base de datos MySql.
- * ###################################################################################
- */
-
 @Component
 public class MySqlConnection {
 	
